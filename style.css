@@ -1,0 +1,390 @@
+:root {
+    --bg-color: #f4f4f9;
+    --text-color: #1a1a1a;
+    --primary-color: #e53935;
+    --secondary-color: #333333;
+    --card-bg: #ffffff;
+    --border-color: #dddddd;
+    --nav-bg: #ffffff;
+    --hover-bg: rgba(0,0,0,0.05);
+}
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #e0e0e0;
+    --primary-color: #f4511e;
+    --secondary-color: #757575;
+    --card-bg: #1e1e1e;
+    --border-color: #333333;
+    --nav-bg: #1f1f1f;
+    --hover-bg: rgba(255,255,255,0.05);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+}
+
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: var(--nav-bg);
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+
+.logo h1 { color: var(--primary-color); font-size: 1.5rem; }
+
+nav .nav-links { list-style: none; display: flex; gap: 1.5rem; }
+nav .nav-links a { text-decoration: none; color: var(--text-color); font-weight: 500; }
+nav .nav-links a.active, nav .nav-links a:hover { color: var(--primary-color); }
+
+.header-actions { display: flex; align-items: center; gap: 15px; }
+
+.btn-primary {
+    background-color: var(--primary-color);
+    color: white; border: none; padding: 0.6rem 1.2rem;
+    border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+.btn-secondary {
+    background-color: transparent;
+    color: var(--primary-color); border: 2px solid var(--primary-color); 
+    padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; font-weight: bold;
+}
+
+.btn-icon {
+    background: none; border: none; color: var(--text-color); font-size: 1.2rem;
+    cursor: pointer; font-weight: bold; display: flex; align-items: center; justify-content: center;
+    width: 35px; height: 35px; border-radius: 50%; background-color: var(--card-bg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+.btn-icon:hover { color: var(--primary-color); }
+
+.page-section { padding: 2rem 5%; }
+.hidden { display: none !important; }
+
+.filters { margin-bottom: 1.5rem; }
+.filters select {
+    padding: 0.5rem; border-radius: 4px; border: 1px solid var(--border-color);
+    background-color: var(--card-bg); color: var(--text-color); font-size: 1rem;
+}
+
+/* ===== GRID SYSTEM CHO CÁC BẢNG THỐNG KÊ (NEW) ===== */
+.stats-grid {
+    display: grid;
+    /* Tự động chia cột: nhỏ nhất 300px, lớn nhất lấp đầy không gian */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.stat-card {
+    background-color: var(--card-bg);
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+
+.stat-header {
+    background-color: var(--primary-color);
+    color: white;
+    padding: 10px 15px;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+}
+
+.leader-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.leader-table th, .leader-table td {
+    padding: 10px 15px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.leader-table th:last-child, .leader-table td:last-child {
+    text-align: right;
+    font-weight: bold;
+}
+
+.leader-table th {
+    font-size: 0.85rem;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+}
+
+.leader-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.leader-table tbody tr:hover {
+    background-color: var(--hover-bg);
+}
+
+/* Style cho Đội hình */
+.roster-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+
+.roster-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+
+.player-icon {
+    font-size: 3rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+/* Style cho Thẻ Link Giải Đấu */
+.tour-link-card {
+    display: block;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-left: 5px solid var(--primary-color);
+    padding: 1.5rem;
+    border-radius: 6px;
+    text-decoration: none;
+    color: var(--text-color);
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.tour-link-card:hover {
+    background-color: var(--hover-bg);
+    transform: translateX(5px);
+}
+
+.past-tour {
+    border-left: 5px solid var(--secondary-color);
+    opacity: 0.8;
+}
+
+/* =========================================
+   POP-UP (MODAL) STYLES
+========================================= */
+.modal-overlay {
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(3px); /* Hiệu ứng mờ nền chuẩn app hiện đại */
+}
+
+.modal-content {
+    background-color: var(--card-bg);
+    width: 90%;
+    max-width: 550px;
+    border-radius: 10px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    animation: modalSlideDown 0.3s ease-out;
+    border: 1px solid var(--border-color);
+}
+
+@keyframes modalSlideDown {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 1.5rem;
+    background-color: var(--primary-color);
+    color: white;
+    border-radius: 10px 10px 0 0;
+}
+
+.close-modal-btn {
+    background: none; border: none; color: white;
+    font-size: 1.5rem; cursor: pointer;
+    transition: transform 0.2s;
+}
+.close-modal-btn:hover { transform: scale(1.2); }
+
+.modal-body { padding: 1.5rem; }
+
+.form-group {
+    display: flex; flex-direction: column;
+    margin-bottom: 1.2rem;
+}
+
+.form-row {
+    display: flex; gap: 1rem;
+}
+.half-width { flex: 1; }
+
+.form-group label {
+    font-weight: 600; font-size: 0.9rem;
+    margin-bottom: 0.5rem; color: var(--text-color);
+}
+
+.form-group input, .form-group select, .form-group textarea {
+    padding: 0.8rem;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: inherit; font-size: 1rem;
+}
+
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+    outline: none; border-color: var(--primary-color);
+}
+
+.form-actions {
+    display: flex; justify-content: flex-end; gap: 1rem;
+    margin-top: 1rem; border-top: 1px solid var(--border-color);
+    padding-top: 1.2rem;
+}
+
+/* =========================================
+   TOURNAMENT DASHBOARD STYLES
+========================================= */
+.tour-tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+    margin-top: 1rem;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.tab-btn {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--text-color);
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.tab-btn.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.tour-section {
+    display: none;
+}
+.tour-section.active {
+    display: block;
+    animation: fadeIn 0.3s;
+}
+@keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+/* Manage Teams */
+.add-team-box {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 2rem;
+}
+.add-team-box input {
+    flex: 1;
+    max-width: 400px;
+    padding: 10px;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background-color: var(--card-bg);
+    color: var(--text-color);
+}
+
+.teams-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 1.5rem;
+}
+
+.team-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-top: 4px solid var(--primary-color);
+    border-radius: 8px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+}
+.team-card h3 { margin-bottom: 1rem; color: var(--primary-color); }
+.team-players { list-style: none; margin-top: 1rem; border-top: 1px solid var(--border-color); padding-top: 1rem; }
+.team-players li { padding: 5px 0; border-bottom: 1px dashed var(--border-color); font-size: 0.95rem; }
+
+.draft-player-box {
+    display: flex; gap: 5px; margin-top: 10px;
+}
+.draft-player-box select {
+    flex: 1; padding: 8px; border-radius: 4px; border: 1px solid var(--border-color);
+    background-color: var(--bg-color); color: var(--text-color);
+}
+
+/* Scoreboard */
+.live-match-box { background: var(--card-bg); padding: 2rem; border-radius: 8px; text-align: center; }
+.scoreboard { display: flex; justify-content: space-around; align-items: center; margin-top: 2rem; }
+.team-score h4 { font-size: 1.5rem; margin-bottom: 1rem; }
+.score { font-size: 5rem; font-weight: bold; color: var(--primary-color); }
+.vs { font-size: 2rem; font-weight: bold; color: var(--secondary-color); }
+
+/* =========================================
+   LIVE SCORE CONTROLS (Thư ký bàn)
+========================================= */
+.team-select-dropdown {
+    padding: 10px; border-radius: 4px; font-size: 1rem;
+    background-color: var(--card-bg); color: var(--text-color);
+}
+
+.match-controls {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+    .match-controls { grid-template-columns: 1fr; } /* Trên điện thoại sẽ xếp dọc dọc cho dễ bấm */
+}
+
+.control-panel {
+    background: var(--card-bg); border-radius: 8px;
+    padding: 1rem; border: 1px solid var(--border-color);
+}
+
+.panel-title { text-align: center; margin-bottom: 1rem; color: var(--primary-color); }
+
+.player-control-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 10px 0; border-bottom: 1px solid var(--border-color);
+}
+
+.player-name-lbl { font-weight: bold; width: 30%; }
+
+.stat-btns { display: flex; gap: 5px; flex-wrap: wrap; justify-content: flex-end; }
+
+.btn-stat {
+    background: var(--bg-color); border: 1px solid var(--secondary-color);
+    color: var(--text-color); padding: 5px 10px; border-radius: 4px;
+    cursor: pointer; font-weight: bold; font-size: 0.85rem;
+}
+.btn-stat.pts { border-color: var(--primary-color); color: var(--primary-color); }
+.btn-stat:hover { background: var(--hover-bg); }
+.btn-stat:active { transform: scale(0.95); } /* Hiệu ứng lún nút khi bấm */

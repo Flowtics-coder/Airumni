@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tournament Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1><i class="fa-solid fa-trophy"></i> TOURNAMENT DASHBOARD</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="index.html"><i class="fa-solid fa-arrow-left"></i> Back to Main Site</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="page-section">
+        <h2 id="tour-dashboard-name">Summer Cup 2026 - 3v3</h2>
+        
+        <!-- Thanh Tab điều hướng trong Giải đấu -->
+        <div class="tour-tabs">
+            <button class="tab-btn active" data-target="manage-teams">Teams & Roster</button>
+            <button class="tab-btn" data-target="bracket">Bracket / Standing</button>
+            <button class="tab-btn" data-target="live-match">Live Match</button>
+        </div>
+
+        <!-- 1. TAB QUẢN LÝ ĐỘI -->
+        <div id="manage-teams" class="tour-section active">
+            <div class="add-team-box">
+                <input type="text" id="new-team-name" placeholder="Tên đội mới (VD: Team A)">
+                <button id="btn-add-team" class="btn-primary">Tạo Đội</button>
+            </div>
+            
+            <div class="teams-grid" id="teams-container">
+                <!-- Các đội sẽ được tạo và hiển thị ở đây bằng Javascript -->
+            </div>
+        </div>
+
+        <!-- 2. TAB SƠ ĐỒ GIẢI -->
+        <div id="bracket" class="tour-section">
+            <div style="text-align: center; padding: 2rem; background: var(--card-bg); border-radius: 8px;">
+                <p>Sơ đồ giải (Bracket) sẽ được tự động vẽ sau khi chốt danh sách đội.</p>
+            </div>
+        </div>
+
+        <!-- 3. TAB TRẬN ĐẤU TRỰC TIẾP -->
+        <div id="live-match" class="tour-section">
+            
+            <!-- Khu vực chọn đội thi đấu -->
+            <div class="match-setup" style="text-align: center; margin-bottom: 2rem;">
+                <select id="select-team-1" class="team-select-dropdown"><option value="">-- Chọn Đội 1 --</option></select>
+                <span style="font-size: 1.5rem; font-weight: bold; margin: 0 1rem;">VS</span>
+                <select id="select-team-2" class="team-select-dropdown"><option value="">-- Chọn Đội 2 --</option></select>
+                <button id="btn-start-match" class="btn-primary" style="margin-left: 1rem;">Bắt Đầu Trận</button>
+            </div>
+
+            <!-- Bảng điều khiển (Sẽ hiện ra khi bấm Bắt đầu) -->
+            <div id="match-active-board" class="hidden">
+                <div class="live-match-box">
+                    <div class="scoreboard">
+                        <div class="team-score">
+                            <h4 id="board-team1-name">Đội 1</h4>
+                            <div class="score" id="board-team1-score">0</div>
+                        </div>
+                        <div class="vs">VS</div>
+                        <div class="team-score">
+                            <h4 id="board-team2-name">Đội 2</h4>
+                            <div class="score" id="board-team2-score">0</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Khu vực bấm điểm cho từng cầu thủ -->
+                <div class="match-controls">
+                    <!-- Bảng nút bấm Đội 1 -->
+                    <div class="control-panel" id="panel-team1">
+                        <h3 class="panel-title" style="color: var(--primary-color)">Điều khiển Đội 1</h3>
+                        <div class="player-controls-list" id="controls-list-team1"></div>
+                    </div>
+
+                    <!-- Bảng nút bấm Đội 2 -->
+                    <div class="control-panel" id="panel-team2">
+                        <h3 class="panel-title" style="color: var(--primary-color)">Điều khiển Đội 2</h3>
+                        <div class="player-controls-list" id="controls-list-team2"></div>
+                    </div>
+                </div>
+
+                <!-- BẢNG BOX SCORE CÁ NHÂN -->
+                <div id="box-score-section" style="margin-top: 3rem; background: var(--card-bg); padding: 1.5rem; border-radius: 8px; border: 1px solid var(--border-color);">
+                    <h3 style="color: var(--primary-color); margin-bottom: 1rem; text-align: center;">BOX SCORE (Thống kê cá nhân)</h3>
+                    <div class="table-container">
+                        <table class="leader-table" id="live-box-score">
+                            <thead>
+                                <tr>
+                                    <th>Player</th>
+                                    <th>Team</th>
+                                    <th>PTS</th>
+                                    <th>FGM</th>
+                                    <th>3PM</th>
+                                    <th>FTM</th>
+                                    <th>REB</th>
+                                    <th>AST</th>
+                                    <th>STL</th>
+                                    <th>BLK</th>
+                                    <th>TOV</th>
+                                    <th>PF</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <!-- Dữ liệu cầu thủ sẽ nhảy realtime vào đây -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </main>
+    <script src="tournament.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Airumni Basketball</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1><i class="fa-solid fa-basketball"></i> AIRUMNI</h1>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li><a href="#" data-target="home" class="active">Home</a></li>
+                <li><a href="#" data-target="roster">Roster</a></li>
+                <li><a href="#" data-target="tournaments">Tournaments</a></li>
+                <li><a href="#" data-target="leaderboard">Player Stats</a></li>
+                <li><a href="#" data-target="history">History</a></li>
+            </ul>
+        </nav>
+        <div class="header-actions">
+            <button id="theme-toggle" class="btn-icon"><i class="fa-solid fa-moon"></i></button>
+            <button class="btn-primary">Admin Login</button>
+        </div>
+    </header>
+
+    <main id="main-content">
+        <!-- Đội Hình (Roster) -->
+        <section id="roster" class="page-section hidden">
+            <h2>Airumni Roster</h2>
+            <div class="roster-grid" id="roster-container">
+                <!-- Sẽ được tạo tự động bằng JavaScript -->
+            </div>
+        </section>
+
+        <!-- Quản lý Giải Đấu (Chuyển trang) -->
+        <section id="tournaments" class="page-section hidden">
+            <h2>Tournament System</h2>
+            <div class="admin-controls">
+                <button class="btn-secondary" id="btn-create-tour">Create New Tournament</button>
+            </div>
+            
+            <div class="tournament-list" style="margin-top: 2rem;">
+                <!-- Khi bấm vào thẻ này, web sẽ chuyển sang trang tournament.html -->
+                <a href="tournament.html?id=summer2026" class="tour-link-card">
+                    <h3>Summer Cup 2026 - 3v3</h3>
+                    <p>Status: Active | View Details & Live Stats <i class="fa-solid fa-arrow-right"></i></p>
+                </a>
+            </div>
+        </section>
+
+        <!-- Bảng Xếp Hạng Kỹ Năng -->
+        <section id="leaderboard" class="page-section hidden">
+            <h2>Skill Leaderboard</h2>
+            <div class="filters">
+                <label for="stat-category"><strong>Select Stat Category: </strong></label>
+                <select id="stat-category">
+                    <option value="all">View All Categories</option>
+                    <optgroup label="Averages">
+                        <option value="ppg">Points Per Game (PPG)</option>
+                        <option value="rpg">Rebounds Per Game (RPG)</option>
+                        <option value="apg">Assists Per Game (APG)</option>
+                        <option value="bpg">Blocks Per Game (BPG)</option>
+                        <option value="spg">Steals Per Game (SPG)</option>
+                    </optgroup>
+                    <optgroup label="Totals">
+                        <option value="gp">Games Played</option>
+                        <option value="tot_pts">Total Points</option>
+                        <option value="tot_reb">Total Rebounds</option>
+                        <option value="tot_ast">Total Assists</option>
+                        <option value="tot_blk">Total Blocks</option>
+                        <option value="tot_stl">Total Steals</option>
+                        <option value="tot_fgm">Total Field Goals Made</option>
+                        <option value="tot_3pm">Total 3 Pointers Made</option>
+                        <option value="tot_ftm">Total Free Throws Made</option>
+                        <option value="tot_tov">Total Turnovers</option>
+                    </optgroup>
+                    <optgroup label="Percentages">
+                        <option value="fg_pct">FG%</option>
+                        <option value="3p_pct">3P%</option>
+                        <option value="ft_pct">FT%</option>
+                    </optgroup>
+                </select>
+            </div>
+            
+            <div class="stats-grid" id="all-time-stats">
+                <!-- Ví dụ bảng PPG -->
+                <div class="stat-card" data-stat="ppg">
+                    <div class="stat-header">Points Per Game (PPG)</div>
+                    <table class="leader-table">
+                        <thead><tr><th>#</th><th>Player</th><th>PPG</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>Đàm Đức Phong</td><td>22.5</td></tr>
+                            <tr><td>2</td><td>Vi Ngọc Minh</td><td>18.0</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Ví dụ bảng RPG -->
+                <div class="stat-card" data-stat="rpg">
+                    <div class="stat-header">Rebounds Per Game (RPG)</div>
+                    <table class="leader-table">
+                        <thead><tr><th>#</th><th>Player</th><th>RPG</th></tr></thead>
+                        <tbody>
+                            <tr><td>1</td><td>Ma Phương Nam</td><td>12.5</td></tr>
+                            <tr><td>2</td><td>Đàm Đức Phong</td><td>8.2</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Bạn có thể copy HTML của <div class="stat-card"> để tạo thêm các bảng như Total Points (data-stat="tot_pts"), v.v. -->
+            </div>
+        </section>
+
+        <!-- Lịch sử (Past Tournaments) -->
+        <section id="history" class="page-section hidden">
+            <h2>Past Tournaments</h2>
+            <div class="tournament-list">
+                <!-- Các giải đấu đã kết thúc sẽ nằm ở đây -->
+                <a href="tournament.html?id=spring2026" class="tour-link-card past-tour">
+                    <h3>Spring Open 2026 - 5v5</h3>
+                    <p>Status: Completed | Champion: Team A</p>
+                </a>
+            </div>
+        </section>
+        <!-- === BẮT ĐẦU ĐOẠN POP-UP MODAL === -->
+        <div id="create-tour-modal" class="modal-overlay hidden">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3>Create New Tournament</h3>
+                    <button class="close-modal-btn">&times;</button>
+                </div>
+                <div class="modal-body">
+                    <form id="create-tour-form">
+                        <div class="form-group">
+                            <label for="tour-name">Tournament Name <span style="color:red">*</span></label>
+                            <input type="text" id="tour-name" required placeholder="e.g. Airumni Cup 2026">
+                        </div>
+                        
+                        <div class="form-row">
+                            <div class="form-group half-width">
+                                <label for="tour-format">Game Format</label>
+                                <select id="tour-format">
+                                    <option value="5v5">5v5 (Full Court)</option>
+                                    <option value="3v3">3v3 (Half Court)</option>
+                                    <option value="2v2">2v2</option>
+                                    <option value="1v1">1v1</option>
+                                </select>
+                            </div>
+                            <div class="form-group half-width">
+                                <label for="tour-type">Tournament Format</label>
+                                <select id="tour-type">
+                                    <option value="single_elim">Single Elimination</option>
+                                    <option value="double_elim">Double Elimination</option>
+                                    <option value="round_robin">Round Robin</option>
+                                    <option value="swiss">Swiss System</option>
+                                    <option value="group_playoff">Group Stage + Playoff</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="tour-desc">Description & Rules (Optional)</label>
+                            <textarea id="tour-desc" rows="3" placeholder="Provide link, rule sets or location details..."></textarea>
+                        </div>
+
+                        <div class="form-actions">
+                            <button type="button" class="btn-secondary" id="cancel-tour-btn">Cancel</button>
+                            <button type="submit" class="btn-primary">Create Tournament</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- === KẾT THÚC ĐOẠN POP-UP MODAL === -->
+    </main>
+    <script src="app.js"></script>
+</body>
+</html>
